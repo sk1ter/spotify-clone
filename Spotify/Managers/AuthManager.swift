@@ -11,8 +11,8 @@ final class AuthManager {
     static let shared = AuthManager()
     
     struct Constants {
-        static let clientID = "***REMOVED***"
-        static let clientSecret = "***REMOVED***"
+        static let clientID = "<client id>"
+        static let clientSecret = "<client secret>"
         static let baseURL =  "https://accounts.spotify.com"
         static let redirectUrl = "https://iosacademy.io"
         static let scopes = "user-read-private,playlist-read-private,playlist-modify-private,playlist-modify-public,user-follow-read,user-library-modify,user-library-read"

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		482220BA29C8F01E00CB9B1F /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482220B929C8F01E00CB9B1F /* AuthResponse.swift */; };
 		48D8E5FF29C8702B00B5FA41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D8E5FE29C8702B00B5FA41 /* AppDelegate.swift */; };
 		48D8E60129C8702B00B5FA41 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D8E60029C8702B00B5FA41 /* SceneDelegate.swift */; };
 		48D8E60329C8702B00B5FA41 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D8E60229C8702B00B5FA41 /* HomeViewController.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		482220B929C8F01E00CB9B1F /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		48D8E5FB29C8702B00B5FA41 /* Spotify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spotify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48D8E5FE29C8702B00B5FA41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48D8E60029C8702B00B5FA41 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				48D8E63629C8AE4800B5FA41 /* AudioTrack.swift */,
 				48D8E63829C8AE5400B5FA41 /* Artist.swift */,
 				48D8E63A29C8AE5C00B5FA41 /* UserProfile.swift */,
+				482220B929C8F01E00CB9B1F /* AuthResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 				48D8E63529C8AE3D00B5FA41 /* Playlist.swift in Sources */,
 				48D8E62F29C8AE1600B5FA41 /* AuthManager.swift in Sources */,
 				48D8E62D29C8AE0400B5FA41 /* SearchResultsViewController.swift in Sources */,
+				482220BA29C8F01E00CB9B1F /* AuthResponse.swift in Sources */,
 				48D8E62329C8ADC300B5FA41 /* WelcomeViewController.swift in Sources */,
 				48D8E63129C8AE2000B5FA41 /* ApiCaller.swift in Sources */,
 				48D8E62729C8ADD800B5FA41 /* ProfileViewController.swift in Sources */,

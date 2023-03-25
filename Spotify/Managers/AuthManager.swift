@@ -22,7 +22,9 @@ final class AuthManager {
         let url = "\(Constants.baseURL)/authorize?response_type=code&client_id=\(Constants.clientID)&scope=\(Constants.scopes)&redirect_uri=\(Constants.redirectUrl)&show_dialog=true"
         return URL(string: url)
     }
-
+    
+    private var refreshingToken = false
+    
     private init() {}
 
     var isSignedIn: Bool {
@@ -48,6 +50,24 @@ final class AuthManager {
         let currentDate = Date()
         let fiveMinutes: TimeInterval = 300
         return currentDate.addingTimeInterval(fiveMinutes) >= expirationDate
+    }
+    
+    private var onRefreshBlocks = [((String) -> Void)]()
+    
+    public func withValidToken(completion: @escaping (String) -> Void) {
+        guard !refreshingToken else {
+            onRefreshBlocks.append(completion)
+            return
+        }
+        if shouldRefreshToken {
+            refreshTokenIfNeeded { [weak self] success in
+                if let token = self?.accessToken, success {
+                    completion(token)
+                }
+            }
+        } else if let token = accessToken {
+            completion(token)
+        }
     }
     
     public func exchangeCodeForToken(code: String, completion: @escaping ((Bool) -> Void)) {
@@ -91,10 +111,18 @@ final class AuthManager {
     }
     
     public func refreshTokenIfNeeded(completion: @escaping (Bool) -> Void) {
-        guard let url = URL(string: "\(Constants.baseURL)/api/token") else {
+        if refreshingToken {
             return
         }
         
+        guard shouldRefreshToken else {
+            completion(true)
+            return
+        }
+        guard let url = URL(string: "\(Constants.baseURL)/api/token") else {
+            return
+        }
+        refreshingToken = true
         var components = URLComponents()
         components.queryItems = [
             URLQueryItem(name: "grant_type", value: "refresh_token"),
@@ -111,6 +139,7 @@ final class AuthManager {
         request.setValue("Basic \(basicToken)", forHTTPHeaderField: "Authorization")
         request.httpBody = components.query?.data(using: .utf8)
         let task = URLSession.shared.dataTask(with: request) {[weak self] data, _, error in
+            self?.refreshingToken = false
             guard let data = data, error == nil else {
                 completion(false)
                 return
@@ -118,6 +147,8 @@ final class AuthManager {
             
             do {
                 let result = try JSONDecoder().decode(AuthResponse.self, from: data)
+                self?.onRefreshBlocks.forEach {$0(result.access_token)}
+                self?.onRefreshBlocks.removeAll()
                 self?.cacheToken(result)
                 completion(true)
             } catch {

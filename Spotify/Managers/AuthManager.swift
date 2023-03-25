@@ -110,13 +110,13 @@ final class AuthManager {
         task.resume()
     }
     
-    public func refreshTokenIfNeeded(completion: @escaping (Bool) -> Void) {
+    public func refreshTokenIfNeeded(completion: ((Bool) -> Void)?) {
         if refreshingToken {
             return
         }
         
         guard shouldRefreshToken else {
-            completion(true)
+            completion?(true)
             return
         }
         guard let url = URL(string: "\(Constants.baseURL)/api/token") else {
@@ -141,7 +141,7 @@ final class AuthManager {
         let task = URLSession.shared.dataTask(with: request) {[weak self] data, _, error in
             self?.refreshingToken = false
             guard let data = data, error == nil else {
-                completion(false)
+                completion?(false)
                 return
             }
             
@@ -150,10 +150,10 @@ final class AuthManager {
                 self?.onRefreshBlocks.forEach {$0(result.access_token)}
                 self?.onRefreshBlocks.removeAll()
                 self?.cacheToken(result)
-                completion(true)
+                completion?(true)
             } catch {
                 print("Error: \(error.localizedDescription)")
-                completion(false)
+                completion?(false)
             }
             
         }

@@ -206,7 +206,6 @@
 				C7DAE9ADEA22A885F980E434 /* Pods-Spotify.debug.xcconfig */,
 				4EBD981F118C426117139D07 /* Pods-Spotify.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};

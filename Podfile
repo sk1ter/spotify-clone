@@ -9,4 +9,5 @@ target 'Spotify' do
   pod 'SDWebImage'
   pod 'Firebase/Analytics'
   pod 'AppReview', :git => 'https://github.com/mezhevikin/AppReview.git'
+  pod 'Bagel', '~>  1.4.0'
 end

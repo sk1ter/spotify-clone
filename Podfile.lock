@@ -1,5 +1,8 @@
 PODS:
   - AppReview (0.0.2)
+  - Bagel (1.4.0):
+    - CocoaAsyncSocket
+  - CocoaAsyncSocket (7.6.5)
   - Firebase/Analytics (10.7.0):
     - Firebase/Core
   - Firebase/Core (10.7.0):
@@ -87,11 +90,14 @@ PODS:
 
 DEPENDENCIES:
   - AppReview (from `https://github.com/mezhevikin/AppReview.git`)
+  - Bagel (~> 1.4.0)
   - Firebase/Analytics
   - SDWebImage
 
 SPEC REPOS:
   trunk:
+    - Bagel
+    - CocoaAsyncSocket
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -114,6 +120,8 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AppReview: 7dfd2ba3456a51f11a07dc4f26f11fc1deb9161f
+  Bagel: c3fa6bcbd52db9ca976edbafd7638f0553ded101
+  CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   Firebase: 0219acf760880eeec8ce479895bd7767466d9f81
   FirebaseAnalytics: f8133442ee6f8512e28ff19e62ce15398bfaeace
   FirebaseCore: e317665b9d744727a97e623edbbed009320afdd7
@@ -125,6 +133,6 @@ SPEC CHECKSUMS:
   PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
   SDWebImage: fd7e1a22f00303e058058278639bf6196ee431fe
 
-PODFILE CHECKSUM: cda95adc907934080fd6965a3d5cdc5bac255466
+PODFILE CHECKSUM: a524dedbced4dbb7b323541524b650eaaa9c280f
 
 COCOAPODS: 1.12.0

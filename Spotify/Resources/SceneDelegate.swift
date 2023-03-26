@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Bagel
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -18,6 +19,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
+        #if DEBUG
+            Bagel.start()
+        #endif
         if AuthManager.shared.isSignedIn {
             AuthManager.shared.refreshTokenIfNeeded(completion: nil)
             window?.rootViewController = TabBarViewController()

@@ -10,12 +10,21 @@ import WebKit
 
 class AuthViewController: UIViewController, WKNavigationDelegate {
     private let webKit: WKWebView = {
-        let prefs = WKWebpagePreferences()
-        prefs.allowsContentJavaScript = true
-        let config = WKWebViewConfiguration()
-        config.defaultWebpagePreferences = prefs
         
-        return WKWebView(frame: .zero, configuration: config)
+        if #available(iOS 14.0, *) {
+            let config = WKWebViewConfiguration()
+            let prefs = WKWebpagePreferences()
+            prefs.allowsContentJavaScript = true
+            config.defaultWebpagePreferences = prefs
+            return WKWebView(frame: .zero, configuration: config)
+        } else {
+            let config = WKWebViewConfiguration()
+            let prefs = WKPreferences()
+            prefs.javaScriptEnabled = true
+            config.preferences = prefs
+            return WKWebView(frame: .zero, configuration: config)
+        }
+    
     }()
     
     public var completionHandler: ((Bool) -> Void)?
